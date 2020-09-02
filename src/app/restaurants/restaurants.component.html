@@ -19,7 +19,7 @@
                     <p class="card-text">
                     <b>Address:</b> {{ restaurant.address +', '+ restaurant.city +', '+ restaurant.postal_code +', '+ restaurant.country }}<br>
                     <b>Area:</b> {{ restaurant.area }}<br>
-                    <b>Phone:</b> {{ restaurant.phone }}
+                    <b>Phone:</b> {{ restaurant.phone | slice:0:3 }}-{{ restaurant.phone | slice:3:6 }}-{{ restaurant.phone | slice:6:10 }}
                     </p>
                     <input class="btn btn-primary" (click)="addToFavorite(restaurant);" [disabled]="alreadyAdded(restaurant)" value="Add To Favorite">
                 </div>
