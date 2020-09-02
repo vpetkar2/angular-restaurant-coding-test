@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="stick">
+        <div class="row m-2">
+            Search : <input type="text" placeholder="City" [(ngModel)]="searchData.city" class="form-control col-2"> 
+            <input class="form-control col-2" type="text" placeholder="Name / Area" [(ngModel)]="searchData.searchText"> 
+            <input class="btn btn-danger col-1" type="button" value="Clear" (click)="searchData.searchText=''" [disabled]="searchData.searchText==''">
+            <input class="btn btn-warning col-2" type="button" value="Go To Favorites {{ allFavorites.length }}" routerLink="/favorites" [disabled]="allFavorites.length==0">
+        </div>
+    </div>
+    <div class="row top-space ml-5 mr-5">
+        <div class="col-4 col-md col-sm" *ngFor="let restaurant of restaurants | filter:'name':'area':searchData.searchText;">
+
+            <!-- Card -->
+            <div class="card mb-2">
+                <h5 class="card-title"><a>{{ restaurant.name }}</a></h5>
+                <span>Price: {{ restaurant.price }}</span>
+                <img class="card-img-top" [src]="restaurant.image_url" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">
+                    <b>Address:</b> {{ restaurant.address +', '+ restaurant.city +', '+ restaurant.postal_code +', '+ restaurant.country }}<br>
+                    <b>Area:</b> {{ restaurant.area }}<br>
+                    <b>Phone:</b> {{ restaurant.phone }}
+                    </p>
+                    <input class="btn btn-primary" (click)="addToFavorite(restaurant);" [disabled]="alreadyAdded(restaurant)" value="Add To Favorite">
+                </div>
+            </div>
+            <!-- Card -->
+
+        </div>
+    </div>
+    <div class="row m-4">
+        <div class="col d-flex justify-content-center">
+            <button class="btn btn-lg btn-success" type="button" (click)="loadRestaurants()">Load Restaurants</button>
+        </div>
+    </div>
+</div>

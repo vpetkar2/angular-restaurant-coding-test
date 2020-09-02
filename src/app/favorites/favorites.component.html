@@ -1,0 +1,25 @@
+<input class="btn btn-warning  m-2" type="button" value="Go Back" (click)="goBack()">
+<div class="row" *ngIf="restaurants.length">
+    <div class="col-2" *ngFor="let restaurant of restaurants; let i = index;">
+        
+        <!-- Card -->
+        <div class="card mb-2">
+            <h5 class="card-title"><a>{{ restaurant.name }}</a></h5>
+            <span>Price: {{ restaurant.price }}</span>
+            <img class="card-img-top" [src]="restaurant.image_url" alt="Card image cap">
+            <div class="card-body">
+                <p class="card-text">
+                <b>Address:</b> {{ restaurant.address +', '+ restaurant.city +', '+ restaurant.postal_code +', '+ restaurant.country }}<br>
+                <b>Area:</b> {{ restaurant.area }}<br>
+                <b>Phone:</b> {{ restaurant.phone }}
+                </p>
+                <a href="javascript:void(0);" class="btn btn-danger" (click)="removeRestaurant(i);">Remove From Favorite</a>
+            </div>
+        </div>
+        <!-- Card -->
+
+    </div>
+</div>
+<div class="row m-2" *ngIf="!restaurants.length">
+    <h3>No Favorite Restaurant</h3>
+</div>
